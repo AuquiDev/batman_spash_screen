@@ -1,17 +1,18 @@
-import 'package:batman_spash_screen/pages/batman_button.dart';
-import 'package:batman_spash_screen/prebapage.dart';
+import 'package:batman_spash_screen/UI/general/general.dart';
+import 'package:batman_spash_screen/UI/pages/login_page.dart';
+import 'package:batman_spash_screen/UI/widget/widget.dart';
 // ignore: depend_on_referenced_packages
 import 'package:vector_math/vector_math_64.dart' as vector;
 import 'package:flutter/material.dart';
 
-class MainBatmanSignUp extends StatefulWidget {
-  const MainBatmanSignUp({super.key});
+class SplashScreenSignUp extends StatefulWidget {
+  const SplashScreenSignUp({super.key});
 
   @override
-  State<MainBatmanSignUp> createState() => _MainBatmanSignUpState();
+  State<SplashScreenSignUp> createState() => _SplashScreenSignUpState();
 }
 
-class _MainBatmanSignUpState extends State<MainBatmanSignUp>
+class _SplashScreenSignUpState extends State<SplashScreenSignUp>
     with SingleTickerProviderStateMixin {
   //ANimation: transsicion moviemientos
   late AnimationController _animationController;
@@ -36,7 +37,7 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
         parent: _animationController, curve: const Interval(0.30, 0.75));
     //para el opacity del logo
     _animationLogoMovementUp2 = CurvedAnimation(
-        parent: _animationController, curve: const Interval(0.60, 0.75));
+        parent: _animationController, curve: const Interval(0.70, 0.75));
     //repetir splash screen
     _animationController.forward();
 
@@ -61,7 +62,7 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
         animation: _animationController,
         builder: (context, _) {
           return Scaffold(
-            backgroundColor: const Color.fromARGB(255, 34, 60, 60),
+            backgroundColor: kfontPrimaryColor,
             body: Stack(
               children: [
                 Positioned(
@@ -78,7 +79,7 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
                 ),
                 Positioned(
                   // top: MediaQuery.of(context).size.height * .7,
-                  bottom: 280 - 200 * _animationLogoMovementUp.value,
+                  bottom: 270 - 190 * _animationLogoMovementUp2.value,
                   left: 0,
                   right: 0,
                   child: Opacity(
@@ -88,7 +89,7 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
                       fit: BoxFit.contain,
                       color: Colors.white,
                       width: width * .13,
-                      height: height * .13,
+                      height: width < 500 ? height * .13 : height * .27,
                     ),
                   ),
                 ),
@@ -96,24 +97,44 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
                     top: height * .3,
                     left: 0,
                     right: 0,
-                    child: Transform.scale(
-                      scale: _animationLogoIn.value,
-                      child: _ImageLLama(
-                        animation: _animationLogoMovementUp2.value,
+                    child: Hero(
+                      tag: 'logo',
+                      transitionOnUserGestures: true,
+                      child: Column(
+                        children: [
+                          //  _animationLogoMovementUp2.value != 0
+                          //     ? Opacity(
+                          //       opacity: _animationLogoMovementUp2.value,
+                          //       child: const Text(
+                          //           'Bienvenido',
+                          //           style: TextStyle(
+                          //               fontSize: 25, color: Colors.white),
+                          //         ),
+                          //     )
+                          //     : const SizedBox(),
+                          Transform.scale(
+                            scale: _animationLogoIn.value,
+                            child: _ImageLLama(
+                              animation: _animationLogoMovementUp.value,
+                            ),
+                          ),
+                        ],
                       ),
                     )),
                 Positioned(
                     bottom: 95,
                     right: 0,
-                    left:width   - width*.63* _animationLogoMovementUp2.value,
+                    left: width < 500
+                        ? width - width * .63 * _animationLogoMovementUp2.value
+                        : width - width * .8 * _animationLogoMovementUp2.value,
                     child: Transform(
                       alignment: Alignment.center,
-                      transform:  Matrix4.identity()
-                       ..rotateY(vector.radians(180)),
+                      transform: Matrix4.identity()
+                        ..rotateY(vector.radians(180)),
                       child: Opacity(
                         opacity: _animationLogoMovementUp2.value,
                         child: SizedBox(
-                          height: height*.04,
+                          height: width < 500 ? height * .04 : height * .09,
                           // color: Colors.red.withOpacity(.2),
                           child: Stack(
                             alignment: Alignment.center,
@@ -121,12 +142,14 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
                               Image.asset(
                                 'assets/guanaco.png',
                                 fit: BoxFit.contain,
-                                color: Colors.tealAccent.withOpacity(.8),
+                                color: Colors.tealAccent,
                               ),
                               Image.asset(
                                 'assets/guanaco.png',
                                 fit: BoxFit.contain,
                                 color: Colors.white,
+                                // width: height*.035,
+                                // height: height * .038,
                               ),
                             ],
                           ),
@@ -144,7 +167,7 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
                       Text('Andean Lodges',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize:19,
+                              fontSize: 19,
                               shadows: [
                                 Shadow(
                                     color: Colors.white,
@@ -170,15 +193,18 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
                   left: 0,
                   child: Opacity(
                     opacity: _animationLogoMovementUp.value,
-                    child: ButtonLogin(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const PruebaPage()));
-                        setState(() {});
-                      },
-                      text: 'Login',
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 40),
+                      child: ButtonLogin(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  const LoginPage()));
+                          setState(() {});
+                        },
+                        text: 'Login',
+                      ),
                     ),
                   ),
                 ),
@@ -191,6 +217,7 @@ class _MainBatmanSignUpState extends State<MainBatmanSignUp>
   }
 }
 
+// ignore: must_be_immutable
 class _ImageLLama extends StatelessWidget {
   _ImageLLama({required this.animation});
   double animation;
@@ -205,13 +232,15 @@ class _ImageLLama extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Image.asset(
-            'assets/guanaco.png',
-            fit: BoxFit.contain,
-            color: Colors.white,
-            width: width * .1 + 3,
-            height: height * .1 + 3,
-          ),
+          animation != 0
+              ? Image.asset(
+                  'assets/guanaco.png',
+                  fit: BoxFit.contain,
+                  color: Colors.white,
+                  width: width * .1 + 4,
+                  height: height * .1 + 5,
+                )
+              : const SizedBox(),
           Image.asset(
             'assets/guanaco.png',
             fit: BoxFit.contain,
@@ -219,7 +248,6 @@ class _ImageLLama extends StatelessWidget {
             width: width * .1,
             height: height * .1,
           ),
-          // animation == 1 ? Text('Welcome',style: TextStyle(fontSize: 30,color: Colors.white),) : Text(''),
         ],
       ),
     );

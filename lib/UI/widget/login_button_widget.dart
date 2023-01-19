@@ -17,14 +17,14 @@ class ButtonLogin extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 40,vertical: 25),
+          margin: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
           height: 45,
           decoration: BoxDecoration(
               boxShadow: const [
                 BoxShadow(
-                    offset: Offset(0, -2), blurRadius: 7, color: Colors.white24)
+                    offset: Offset(1, 1), blurRadius: 2, color: Colors.white)
               ],
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
               gradient: const LinearGradient(colors: [
                 Colors.teal,
                 Colors.black,

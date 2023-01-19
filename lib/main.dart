@@ -1,20 +1,37 @@
-import 'package:batman_spash_screen/pages/batman_sing_up.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:batman_spash_screen/UI/splash%20scren/splash_screen.dart';
+import 'package:batman_spash_screen/service/service.dart';
 
-void main() => runApp(const MyApp());
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+void main() => runApp(const AppState());
+
+class AppState extends StatelessWidget {
+  const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return  MultiProvider(
+      providers: [
+        ChangeNotifierProvider(lazy: false,create: (_)=> RecursosProvider()),
+        ChangeNotifierProvider(create: (_)=> ThemePage(1))//thema de la aplicacion: dark o light
+      ],
+      child: const MyApp() ,
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    final themeApp = Provider.of<ThemePage>(context).currentTheme;
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const MainBatmanSignUp(),
-      theme: ThemeData.light().copyWith(
-        textTheme: GoogleFonts.vidalokaTextTheme(),
-      ),
-    );
+      home:  const SplashScreenSignUp(),
+      theme: themeApp
+      );
   }
 }
