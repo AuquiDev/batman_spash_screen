@@ -17,18 +17,27 @@ class ButtonLogin extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
+          margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 25),
           height: 45,
           decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                    offset: Offset(1, 1), blurRadius: 2, color: Colors.white)
-              ],
-              borderRadius: BorderRadius.circular(15),
-              gradient: const LinearGradient(colors: [
-                Colors.teal,
-                Colors.black,
-              ])),
+            boxShadow: const [
+              BoxShadow(
+                  offset: Offset(0, 1), blurRadius: 4, color: Colors.white)
+            ],
+            borderRadius: BorderRadius.circular(15),
+            gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [
+                  0.2,
+                  0.5
+                ],
+                colors: [
+                  Color.fromARGB(255, 66, 68, 142),
+                  Color(0xff202333),
+                  
+                ]),
+          ),
           child: Center(
             child: Stack(
               children: [

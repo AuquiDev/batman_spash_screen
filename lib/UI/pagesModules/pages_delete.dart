@@ -19,21 +19,6 @@ class Page1 extends StatelessWidget {
 }
 
 
-class Page2 extends StatelessWidget {
-  const Page2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title:const Text('pagina 2'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-    );
-  }
-}
 
 
 class Page3 extends StatelessWidget {
