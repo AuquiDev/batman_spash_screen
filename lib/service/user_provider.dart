@@ -105,7 +105,7 @@ class RecursosProvider extends ChangeNotifier {
             "telefono": user.telefono,
             "correo": user.correo,
             "estatus": user.estatus,
-            "calification": 0,
+            "calification": user.calification,
             "image": user.image,
           }
         }));

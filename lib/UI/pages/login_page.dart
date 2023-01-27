@@ -85,163 +85,160 @@ class _LoginPageState extends State<LoginPage> {
           ? Stack(
               children: [
                 BackgroundPageWdiget(
-                  isvisible: false,
-                  image: const NetworkImage(
-                      'https://i.pinimg.com/564x/d0/b7/ba/d0b7ba1634a0f732302e9b015e94cfb7.jpg'),
+                    image: const NetworkImage(
+                        'https://i.pinimg.com/564x/65/18/4a/65184af0f74b717fe3ed688b60e80faa.jpg'),
+                    isvisible: false),
+                Hero(
+                  tag: 'logo',
+                  transitionOnUserGestures: true,
+                  child: BackgroundPageWdiget(
+                    isvisible: false,
+                    image: const AssetImage('assets/cerro_colores.png'),
+                  ),
                 ),
-                SingleChildScrollView(
-                  child: SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Form(
-                        key: formkey,
-                        child: Column(
-                          children: [
-                            spacingheight20,
-                            Hero(
-                              tag: 'logo',
-                              transitionOnUserGestures: true,
-                              child: ImageLLama(
-                                height: 180,
-                                width: 150,
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SingleChildScrollView(
+                    child: SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Form(
+                          key: formkey,
+                          child: Column(
+                            children: [
+                              spacingheight20,
+                              spacingheight20,
+                              TextStyleUi(
+                                text: 'Andean Lodges',
+                                fontWeight: FontWeight.bold,
+                                size: 25,
+                                color: Colors.white.withOpacity(.7),
                               ),
-                            ),
-                            spacingheight20,
-                            TextStyleUi(
-                              text: 'Andean Lodges',
-                              fontWeight: FontWeight.bold,
-                              size: 25,
-                              color: Colors.white.withOpacity(.7),
-                            ),
-                            spacingheight10,
-                            TextStyleUi(
-                              text:
-                                  '"Cada día es una nueva oportunidad para hacer algo extraordinario".',
-                              fontWeight: FontWeight.bold,
-                              size: 13,
-                              color: Colors.white.withOpacity(.7),
-                              textAlign: TextAlign.justify,
-                            ),
-                            spacingheight40,
-                            //Formulario
-                            // isVisible== false ? Text('Contraseña visible, ingrese sus datos nuevamente') : Text(''),
-                            BlurWidget(
-                              colorblur: Colors.white.withOpacity(.6),
-                              height: null,
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextStyleUi(
-                                        textAlign: TextAlign.start,
-                                        fontWeight: FontWeight.normal,
-                                        size: 15,
-                                        text: 'Tu numero de DNI',
-                                        color: kfontPrimaryColor),
-                                    spacingheight10,
-                                    TextFormField(
-                                      style: TextStyle(
-                                          color: kfontPrimaryColor, fontSize: 15),
-                                      decoration: InputDecoration(
-                                        hintText: 'Ingresa tu DNI',
-                                        // counter: const SizedBox(),
-                                        hintStyle: TextStyle(
-                                          fontSize: 13,
-                                          color: kfontPrimaryColor.withOpacity(.5),
-                                        ),
-                                        enabledBorder: _OutlineInputBorder(),
-                                        focusedBorder: _OutlineInputBorder(),
-                                        errorBorder: _OutlineInputBorder(),
-                                        border: _OutlineInputBorder(),
-                                        disabledBorder: _OutlineInputBorder(),
-                                        focusedErrorBorder: _OutlineInputBorder(),
+                              spacingheight10,
+                              TextStyleUi(
+                                text:
+                                    '"Cada día es una nueva oportunidad para hacer algo extraordinario".',
+                                fontWeight: FontWeight.bold,
+                                size: 13,
+                                color: Colors.white.withOpacity(.7),
+                                textAlign: TextAlign.justify,
+                              ),
+                              spacingheight10,
+                              BlurWidget(
+                                colorblur: Colors.white.withOpacity(.5),
+                                height: null,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      TextStyleUi(
+                                          textAlign: TextAlign.start,
+                                          fontWeight: FontWeight.normal,
+                                          size: 14,
+                                          text: 'Tu numero de DNI',
+                                          color: kfontPrimaryColor),
+                                      spacingheight10,
+                                      TextFormField(
+                                        style: TextStyle(
+                                            color: kfontPrimaryColor,
+                                            fontSize: 12),
+                                        decoration: decorationinputtext(
+                                            'Ingresa tu DNI', 'Ingresa tu DNI'),
+                                        keyboardType: TextInputType.number,
+                                        maxLength: 8,
+                                        inputFormatters: [
+                                          //Expresion Regular
+                                          FilteringTextInputFormatter.allow(
+                                              RegExp('[0-9]'))
+                                        ],
+                                        onSaved: (values) {
+                                          username = values!;
+                                        },
+                                        validator: (value) {
+                                          if (value != null && value.isEmpty) {
+                                            return 'Campo obligatorio';
+                                          }
+                                          if (value!.length < 8) {
+                                            return 'Ingrese 8 digitos';
+                                          }
+                                          return null;
+                                        },
                                       ),
-                                      keyboardType: TextInputType.number,
-                                      maxLength: 8,
-                                      inputFormatters: [
-                                        //Expresion Regular
-                                        FilteringTextInputFormatter.allow(
-                                            RegExp('[0-9]'))
-                                      ],
-                                      onSaved: (values) {
-                                        username = values!;
-                                      },
-                                      validator: (value) {
-                                        if (value != null && value.isEmpty) {
-                                          return 'Campo obligatorio';
-                                        }
-                                        if (value!.length < 8) {
-                                          return 'Ingrese 8 digitos';
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                    spacingheight20,
-                                    TextStyleUi(
-                                        textAlign: TextAlign.start,
-                                        fontWeight: FontWeight.normal,
-                                        size: 15,
-                                        text: 'Tu contraseña',
-                                        color: kfontPrimaryColor),
-                                    spacingheight10,
-                                    TextFormField(
-                                      obscureText: isVisible,
-                                      style: TextStyle(
-                                          color: kfontPrimaryColor, fontSize: 15),
-                                      decoration: InputDecoration(
-                                          hintText: 'Ingresa tu contraseña',
-                                          hintStyle: TextStyle(
-                                            fontSize: 13,
-                                            color:
-                                                kfontPrimaryColor.withOpacity(.5),
-                                          ),
-                                          enabledBorder: _OutlineInputBorder(),
-                                          focusedBorder: _OutlineInputBorder(),
-                                          errorBorder: _OutlineInputBorder(),
-                                          border: _OutlineInputBorder(),
-                                          disabledBorder: _OutlineInputBorder(),
-                                          focusedErrorBorder: _OutlineInputBorder(),
-                                          suffixIcon: IconButton(
-                                              onPressed: () {
-                                                isVisible = !isVisible;
-                                                setState(() {});
-                                              },
-                                              icon: Icon(
-                                                isVisible != true
-                                                    ? Icons.visibility
-                                                    : Icons.visibility_off,
-                                                size: 18,
-                                                color: kfontPrimaryColor
-                                                    .withOpacity(.5),
-                                              ))),
-                                      keyboardType: TextInputType.visiblePassword,
-                                      onSaved: (value) {
-                                        password = value!;
-                                      },
-                                      validator: (value) {
-                                        if (value != null && value.isEmpty) {
-                                          return 'Campo obligatorio';
-                                        }
-                                        if (value!.length < 6) {
-                                          return 'Ingrese mas de 6 caracteres';
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                    spacingheight20,
-                                  ],
+                                      // spacingheight10,
+                                      TextStyleUi(
+                                          textAlign: TextAlign.start,
+                                          fontWeight: FontWeight.normal,
+                                          size: 13,
+                                          text: 'Tu contraseña',
+                                          color: kfontPrimaryColor),
+                                      spacingheight10,
+                                      TextFormField(
+                                        obscureText: isVisible,
+                                        style: TextStyle(
+                                            color: kfontPrimaryColor,
+                                            fontSize: 14),
+                                        decoration: InputDecoration(
+                                            hintText: 'Ingresa tu contraseña',
+                                            hintStyle: TextStyle(
+                                              fontSize: 13,
+                                              color: kfontPrimaryColor
+                                                  .withOpacity(.5),
+                                            ),
+                                            enabledBorder: outlineInputBorder(),
+                                            focusedBorder: outlineInputBorder(),
+                                            errorBorder: outlineInputBorder(),
+                                            border: outlineInputBorder(),
+                                            disabledBorder:
+                                                outlineInputBorder(),
+                                            focusedErrorBorder:
+                                                outlineInputBorder(),
+                                            suffixIcon: IconButton(
+                                                onPressed: () {
+                                                  isVisible = !isVisible;
+                                                  setState(() {});
+                                                },
+                                                icon: Icon(
+                                                  isVisible != true
+                                                      ? Icons.visibility
+                                                      : Icons.visibility_off,
+                                                  size: 18,
+                                                  color: kfontPrimaryColor
+                                                      .withOpacity(.5),
+                                                ))),
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
+                                        onSaved: (value) {
+                                          password = value!;
+                                        },
+                                        validator: (value) {
+                                          if (value != null && value.isEmpty) {
+                                            return 'Campo obligatorio';
+                                          }
+                                          if (value!.length < 6) {
+                                            return 'Ingrese mas de 6 caracteres';
+                                          }
+                                          return null;
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            //Botton Login
-                            ButtonLogin(
-                                onTap: () {
-                                  login();
-                                  setState(() {});
-                                },
-                                text: 'Iniciar sesion')
-                          ],
+                              //Botton Login
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                child: ButtonLogin(
+                                    onTap: () {
+                                      login();
+                                      setState(() {});
+                                    },
+                                    text: 'Iniciar sesión'),
+                              ),
+                              spacingheight50
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -252,15 +249,6 @@ class _LoginPageState extends State<LoginPage> {
           : const Center(
               child: CircularProgressIndicator(),
             ),
-    );
-  }
-
-  // ignore: non_constant_identifier_names
-  OutlineInputBorder _OutlineInputBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide:
-          BorderSide(color: kfontSecondaryColor.withOpacity(.5), width: .5),
     );
   }
 }

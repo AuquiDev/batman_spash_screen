@@ -2,6 +2,7 @@
 
 import 'package:batman_spash_screen/UI/general/general.dart';
 import 'package:batman_spash_screen/UI/routes/routes.dart';
+import 'package:batman_spash_screen/UI/splash%20scren/splash_screen.dart';
 import 'package:batman_spash_screen/UI/widget/widget.dart';
 import 'package:batman_spash_screen/models/model.dart';
 import 'package:flutter/material.dart';
@@ -12,18 +13,42 @@ class HomePage extends StatelessWidget {
   User userlogin;
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle.light); //color de la barra de superior del phone
-    //.copyWith( statusBarColor: Colors.redAccent, statusBarBrightness: Brightness.dark ));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return Scaffold(
         body: Stack(
           children: [
             BackgroundPageWdiget(
               image: const NetworkImage(
-                  'https://i.pinimg.com/564x/1f/20/0f/1f200f2f172e42fff38207d656819680.jpg'),
+                  'https://i.pinimg.com/564x/22/77/b4/2277b4df55c0c3e0ebeb81eb535a4ef8.jpg'),
               isvisible: true,
             ),
-            _HomeRoles(user: userlogin),
+            Hero(
+              tag: 'logo',
+              transitionOnUserGestures: true,
+              child: BackgroundPageWdiget(
+                image: const AssetImage('assets/cerro_colores.png'),
+                isvisible: false,
+              ),
+            ),
+            Positioned(
+                right: 0,
+                child: SafeArea(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SplashScreenSignUp()),
+                          (route) => false);
+                    },
+                    child: const BlurWidget(
+                      colorblur: Color.fromRGBO(55, 57, 84, 1),
+                      height:null,
+                      child: Icon(Icons.radio_button_off,color: Colors.white,)
+                    ),
+                  ),
+                )),
+            _HomeRoles(userLogin: userlogin),
           ],
         ),
         extendBody: true,
@@ -48,9 +73,9 @@ class HomePage extends StatelessWidget {
 }
 
 class _HomeRoles extends StatelessWidget {
-  _HomeRoles({required this.user});
+  _HomeRoles({required this.userLogin});
 
-  User user;
+  User userLogin;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +89,7 @@ class _HomeRoles extends StatelessWidget {
             TextStyleUi(
                 fontWeight: FontWeight.bold,
                 size: 20,
-                text: 'Bienvenido ${user.nombreCompleto}',
+                text: 'Bienvenido ${userLogin.nombreCompleto}',
                 color: Colors.white),
             spacingheight10,
             TextStyleUi(
@@ -74,8 +99,11 @@ class _HomeRoles extends StatelessWidget {
                     'Realiza tus actividades de forma rapida y sencilla, consulta tus dudas con el administrador.',
                 color: Colors.white.withOpacity(.7)),
             //Card de Modulos
-
-            const Expanded(child: _CardModules()),
+          spacingheight50,
+            Expanded(
+                child: _CardModules(
+              userLogin: userLogin,
+            )),
           ],
         ),
       ),
@@ -85,10 +113,12 @@ class _HomeRoles extends StatelessWidget {
 
 //Tarjetas de modulos del Home page
 class _CardModules extends StatelessWidget {
-  const _CardModules({
+  _CardModules({
     Key? key,
+    required this.userLogin,
   }) : super(key: key);
 
+  User userLogin;
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -98,21 +128,22 @@ class _CardModules extends StatelessWidget {
           pageRoutes.length,
           (index) => CardBlurWidget(
             ruta: pageRoutes[index].page,
-            colorblur: const Color.fromRGBO(62, 60, 107, .42),
+            colorblur: const Color.fromRGBO(55, 57, 84, .3),
             height: 180,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+               
                 CircleAvatar(
-                    backgroundColor: Colors.primaries[index + 9],
-                    radius: 30,
+                    backgroundColor: Colors.primaries[index +5].withOpacity(.3),
+                    radius: 45,
                     child: pageRoutes[index].icon),
                 spacingheight10,
                 TextStyleUi(
                     fontWeight: FontWeight.bold,
-                    size: 12,
+                    size: 13,
                     text: pageRoutes[index].title,
-                    color: Colors.primaries[index + 9])
+                    color: Colors.white)
               ],
             ),
           ),

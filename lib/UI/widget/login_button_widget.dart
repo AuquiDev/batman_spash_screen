@@ -18,19 +18,19 @@ class ButtonLogin extends StatelessWidget {
         highlightColor: Colors.transparent,
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 25),
-          height: 45,
+          height: 50,
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
-                  offset: Offset(0, 1), blurRadius: 4, color: Colors.white)
+                  offset: Offset(1.5, 1.5), blurRadius: 10, color: Colors.white12)
             ],
             borderRadius: BorderRadius.circular(15),
             gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 stops: [
-                  0.2,
-                  0.5
+                  0.3,
+                  0.7
                 ],
                 colors: [
                   Color.fromARGB(255, 66, 68, 142),
@@ -39,22 +39,16 @@ class ButtonLogin extends StatelessWidget {
                 ]),
           ),
           child: Center(
-            child: Stack(
-              children: [
-                Center(
-                  child: Text(text,
-                      style: const TextStyle(
+            child: Text(text,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    shadows: [
+                      Shadow(
                           color: Colors.white,
-                          fontSize: 20,
-                          shadows: [
-                            Shadow(
-                                color: Colors.white,
-                                offset: Offset(0, 2),
-                                blurRadius: 10),
-                          ])),
-                )
-              ],
-            ),
+                          offset: Offset(0, 2),
+                          blurRadius: 10),
+                    ])),
           ),
         ));
   }
