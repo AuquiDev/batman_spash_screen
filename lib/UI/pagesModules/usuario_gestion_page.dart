@@ -1,15 +1,19 @@
 import 'dart:ui';
 
-import 'package:batman_spash_screen/UI/general/colors.dart';
+
 import 'package:batman_spash_screen/UI/pagesModules/pagemodules.dart';
-import 'package:batman_spash_screen/UI/widget/widget.dart';
 import 'package:batman_spash_screen/UI/widgetModules/widgetmodules.dart';
+import 'package:batman_spash_screen/UI/widget/widget.dart';
+import 'package:batman_spash_screen/models/model.dart';
+import 'package:batman_spash_screen/service/service.dart';
+import 'package:batman_spash_screen/UI/general/colors.dart';
 
-import 'package:batman_spash_screen/models/user_model.dart';
-import 'package:batman_spash_screen/service/user_provider.dart';
 
-import 'package:flutter/material.dart';
+import 'package:fade_out_particle/fade_out_particle.dart';
+import 'package:insta_image_viewer/insta_image_viewer.dart';
+
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class UsuariogestionPage extends StatefulWidget {
   const UsuariogestionPage({super.key});
@@ -65,6 +69,7 @@ class _UsuariogestionPageState extends State<UsuariogestionPage>
     final double width = size.width;
     final double menuwidth = width * .5;
 
+
     return Scaffold(
         body: Stack(
           children: [
@@ -93,53 +98,62 @@ class _UsuariogestionPageState extends State<UsuariogestionPage>
                     child: Padding(
                       padding:
                           const EdgeInsets.only(right: 10, left: 10, top: 0),
-                      child: BlurWidget(
-                        height: 60,
-                        colorblur:Colors.primaries[index].withAlpha(1).withOpacity(.08),
-                        child: Stack(
-                          children: [
-                            USerWidgetModuleCard(
-                              userIo: userIo,
-                              index: index,
-                              userlist: userList,
-                            ),
-                            Positioned(
-                              left: 0,
-                              bottom: 0,
-                              child: InkWell(
-                                  onTap: () {
-                                    userList.selectedUser =
-                                        userList.recursoList[index].copy();
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const UsuarioModule()));
-                                  },
-                                  child: Container(
-                                      height: 65,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(1),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.edit,
-                                            color: kfont3erColor,
-                                            size: 20,
+                      child: Center(
+                        child: BlurWidget(
+                          height: 60,
+                          colorblur: expanded == false ? Colors.primaries[index].withAlpha(1).withOpacity(.08) 
+                          : Colors.transparent,
+                          child: Stack(
+                            children: [
+                              FadeOutParticle(            
+                                disappear: expanded,
+                                child: USerWidgetModuleCard(
+                                  userIo: userIo,
+                                  index: index,
+                                  userlist: userList,
+                                ),
+                              ),
+                              Positioned(
+                                left: 0,
+                                bottom: 0,
+                                child: InkWell(
+                                    onTap: () {
+                                      userList.selectedUser =
+                                          userList.recursoList[index].copy();
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const UsuarioModule()));
+                                    },
+                                    child: FadeOutParticle(
+                                      disappear: expanded,
+                                      child: Container(
+                                          height: 65,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(1),
                                           ),
-                                          TextStyleUi(
-                                              fontWeight: FontWeight.bold,
-                                              size: 10,
-                                              text: 'Editar',
-                                              color:kfont3erColor)
-                                        ],
-                                      ))),
-                            ),
-                          ],
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.edit,
+                                                color: kfont3erColor,
+                                                size: 20,
+                                              ),
+                                              TextStyleUi(
+                                                  fontWeight: FontWeight.bold,
+                                                  size: 10,
+                                                  text: 'Editar',
+                                                  color:kfont3erColor)
+                                            ],
+                                          )),
+                                    )),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -163,9 +177,11 @@ class _UsuariogestionPageState extends State<UsuariogestionPage>
                         child: BlurWidget(
                           colorblur: Colors.black.withOpacity(.8),
                           height: null,
-                          child: Image.network(
-                            currentUser.image,
-                            height: 300,
+                          child: InstaImageViewer(
+                            child: Image.network(
+                              currentUser.image,
+                              height: 300,
+                            ),
                           ),
                         ),
                       ),

@@ -40,7 +40,18 @@ dependencies:
   http: ^0.13.5
   provider: ^6.0.5
   image_picker: ^0.8.6
+
   search_page: ^2.2.0
+  # responsive_table: ^0.2.0+2
+  fade_out_particle: ^1.2.1
+  snappable_thanos: ^0.0.4
+  bubble_lens: ^2.0.0
+  insta_image_viewer: ^1.0.2
+  # animated_card: ^2.0.0
+  # gender_picker: ^1.1.0
+  # simple_ripple_animation: ^0.0.3
+  clickable_list_wheel_view: ^0.2.0
+
 
 dev_dependencies:
   flutter_test:

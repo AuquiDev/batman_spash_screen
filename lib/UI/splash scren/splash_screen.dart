@@ -52,7 +52,7 @@ class _SplashScreenSignUpState extends State<SplashScreenSignUp>
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+
     return GestureDetector(
       onTap: () {
         _animationController.forward(from: 0.0);
@@ -88,8 +88,8 @@ class _SplashScreenSignUpState extends State<SplashScreenSignUp>
                       'assets/logo.png',
                       fit: BoxFit.contain,
                       color: Colors.white,
-                      width: width * .13,
-                      height: width < 500 ? height * .13 : height * .27,
+                      width: 150,
+                      height:120,// width < 500 ? height * .13 : height * .27,
                     ),
                   ),
                 ),
@@ -156,10 +156,10 @@ class _ImageLLama extends StatelessWidget {
   _ImageLLama({required this.animation,required this.animation2});
   double animation;
   double animation2;
+  
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+
     return Transform(
       alignment: Alignment.center,
       transform: Matrix4.identity()..rotateY(vector.radians(180 * animation)),
@@ -173,19 +173,19 @@ class _ImageLLama extends StatelessWidget {
                   color: animation2 == 0
                 ? Colors.black
                 :Colors.white,
-                  width: width * .1 + 3,
-                  height: height * .1 + 3,
+                  width: 90 - 3,
+                  height: 90 - 3,
                 )
               : const SizedBox(),
-          Image.asset(
+         Image.asset(
             'assets/guanaco.png',
             fit: BoxFit.contain,
             color: animation2 == 0
                 ? Colors.black
                 :Colors.white,
-            width: width * .1,
-            height: height * .1,
-          ),
+            width: 90,
+            height: 90,
+          )
         ],
       ),
     );
