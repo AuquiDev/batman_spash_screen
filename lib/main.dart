@@ -1,4 +1,5 @@
 import 'package:batman_spash_screen/UI/splash%20scren/splash_screen.dart';
+
 import 'package:batman_spash_screen/service/service.dart';
 
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class AppState extends StatelessWidget {
     return  MultiProvider(
       providers: [
         ChangeNotifierProvider(lazy: false,create: (_)=> RecursosProvider()),
+        ChangeNotifierProvider(lazy: false,create: (_)=>ProductoProvider()),
       ],
       child: const MyApp() ,
     );
