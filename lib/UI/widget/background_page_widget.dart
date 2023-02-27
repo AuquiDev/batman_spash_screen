@@ -53,7 +53,8 @@ class BackgroundPageWdiget extends StatelessWidget {
                     image: DecorationImage(image: AssetImage('assets/sol.png')),
                   ),
                 ))
-            : const SizedBox()
+            : const SizedBox(),
+        Container(child: widget,)
       ],
     );
   }

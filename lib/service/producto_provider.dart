@@ -15,6 +15,7 @@ class ProductoProvider extends ChangeNotifier {
 
 
   ProductoProvider(){
+    // ignore: avoid_print
     print('Producto provider inicializado');
     getProductoProvider();
   }
@@ -24,7 +25,6 @@ class ProductoProvider extends ChangeNotifier {
     final response = await http.get(url);
     final decodeData = ProductoModel.fromJson(response.body);
     productoList = decodeData.productos;
-    print(productoList[10].descripcin);
     notifyListeners();
   }
 

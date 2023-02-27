@@ -83,7 +83,7 @@ class Producto {
         imagen: json["imagen"],
         comprar: json["comprar"],
         inversin: json["inversión"],
-        proveedor: json["proveedor"] ?? ' ',
+        proveedor: json["proveedor"] ?? 'No Proveedor',
         id: json["id"],
     );
 
@@ -107,4 +107,24 @@ class Producto {
         "proveedor": proveedor,
         "id": id,
     };
+    Producto copy() => Producto(
+        fechaRegistro: fechaRegistro,
+        categoria: categoria,
+        descripcin: descripcin,
+        fabricante: fabricante,
+        cantdXPaq: cantdXPaq,
+        unidadDeMedida: unidadDeMedida,
+        entradas: entradas,
+        salidas: salidas,
+        existencia: existencia,
+        precioUnidad: precioUnidad,
+        precioPaquete: precioPaquete,
+        fechaV: fechaV,
+        status: status,
+        imagen: imagen,
+        comprar: comprar,
+        inversin: inversin,
+        proveedor: proveedor,
+        id: id,
+    );
 }

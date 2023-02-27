@@ -1,10 +1,11 @@
-import 'package:batman_spash_screen/UI/splash%20scren/splash_screen.dart';
+
 
 import 'package:batman_spash_screen/service/service.dart';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'UI/splash scren/splash_screen.dart';
 
 void main() => runApp(const AppState());
 
@@ -31,8 +32,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  const SplashScreenSignUp(),
-      theme: ThemeData.light().copyWith(textTheme: GoogleFonts.vidalokaTextTheme())
+      home:const SplashScreenSignUp(),//const AnimationControllerTest(),
+      theme: ThemeData.light().copyWith(textTheme: GoogleFonts.poppinsTextTheme())
       );
   }
 }

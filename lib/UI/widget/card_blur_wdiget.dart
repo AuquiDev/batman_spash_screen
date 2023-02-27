@@ -34,6 +34,7 @@ class BlurWidget extends StatelessWidget {
   const BlurWidget({
     Key? key,
     required this.height,
+    this.width,
     required this.colorblur,
     required this.child,
   }) : super(key: key);
@@ -41,6 +42,7 @@ class BlurWidget extends StatelessWidget {
   final double? height;
   final Color? colorblur;
   final Widget? child;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class BlurWidget extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 3, sigmaY: 5),
           child: Container(
             height: height,
+            width: width,
             decoration: BoxDecoration(
               color: colorblur,
               borderRadius: BorderRadius.circular(20),

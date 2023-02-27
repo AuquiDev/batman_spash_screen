@@ -48,6 +48,8 @@ class _LoginPageState extends State<LoginPage> {
                     MaterialPageRoute(
                         builder: (context) => HomePage(
                               userlogin: users[i],
+                              listUsers: userProvider,
+                              index: i,
                             )),
                     (route) => false);
                 break;
@@ -62,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             behavior: SnackBarBehavior.floating,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            backgroundColor: Colors.indigoAccent.withOpacity(.5),
+            backgroundColor: const Color.fromARGB(255, 175, 59, 33).withOpacity(.8),
             content: Row(
               children: [
                 const Icon(
@@ -99,147 +101,150 @@ class _LoginPageState extends State<LoginPage> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: SingleChildScrollView(
-                    child: SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Form(
-                          key: formkey,
-                          child: Column(
-                            children: [
-                              spacingheight20,
-                              spacingheight20,
-                              TextStyleUi(
-                                text: 'Andean Lodges',
-                                fontWeight: FontWeight.bold,
-                                size: 25,
-                                color: Colors.white.withOpacity(.7),
-                              ),
-                              spacingheight10,
-                              TextStyleUi(
-                                text:
-                                    '"Cada día es una nueva oportunidad para hacer algo extraordinario".',
-                                fontWeight: FontWeight.bold,
-                                size: 13,
-                                color: Colors.white.withOpacity(.7),
-                                textAlign: TextAlign.justify,
-                              ),
-                              spacingheight10,
-                              BlurWidget(
-                                colorblur: Colors.white.withOpacity(.5),
-                                height: null,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      TextStyleUi(
-                                          textAlign: TextAlign.start,
-                                          fontWeight: FontWeight.normal,
-                                          size: 14,
-                                          text: 'Tu numero de DNI',
-                                          color: kfontPrimaryColor),
-                                      spacingheight10,
-                                      TextFormField(
-                                        style: TextStyle(
-                                            color: kfontPrimaryColor,
-                                            fontSize: 12),
-                                        decoration: decorationinputtext(
-                                            'Ingresa tu DNI', 'Ingresa tu DNI'),
-                                        keyboardType: TextInputType.number,
-                                        maxLength: 8,
-                                        inputFormatters: [
-                                          //Expresion Regular
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
-                                        onSaved: (values) {
-                                          username = values!;
-                                        },
-                                        validator: (value) {
-                                          if (value != null && value.isEmpty) {
-                                            return 'Campo obligatorio';
-                                          }
-                                          if (value!.length < 8) {
-                                            return 'Ingrese 8 digitos';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                      // spacingheight10,
-                                      TextStyleUi(
-                                          textAlign: TextAlign.start,
-                                          fontWeight: FontWeight.normal,
-                                          size: 13,
-                                          text: 'Tu contraseña',
-                                          color: kfontPrimaryColor),
-                                      spacingheight10,
-                                      TextFormField(
-                                        obscureText: isVisible,
-                                        style: TextStyle(
-                                            color: kfontPrimaryColor,
-                                            fontSize: 14),
-                                        decoration: InputDecoration(
-                                            hintText: 'Ingresa tu contraseña',
-                                            hintStyle: TextStyle(
-                                              fontSize: 13,
+                    child: Form(
+                      key: formkey,
+                      child: Column(
+                        children: [
+                          
+                          // Lottie.network(
+                          //     'https://assets10.lottiefiles.com/packages/lf20_yravkfyg.json',
+                          //     fit: BoxFit.cover,
+                          //     height: 100),
+                          BlurWidget(
+                            colorblur: Colors.white,
+                            height: null,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 20.0, left: 20.0,bottom: 40),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                      child: BlurWidget(
+                                          height: 6,
+                                          colorblur:
+                                              kfontPrimaryColor.withOpacity(.5),
+                                          child: const SizedBox(
+                                            width: 50,
+                                          ))),
+                                  spacingheight20,
+                                  TextStyleUi(
+                                    text: 'Andean Lodges',
+                                    fontWeight: FontWeight.bold,
+                                    size: 25,
+                                    color: const Color.fromARGB(255, 111, 69, 5).withOpacity(1),
+                                  ),
+                                  spacingheight10,
+                                  TextStyleUi(
+                                    text:
+                                        'Cada día es una nueva oportunidad para hacer algo extraordinario',
+                                    fontWeight: FontWeight.bold,
+                                    size: 13,
+                                    color: kfontPrimaryColor.withOpacity(.7),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  spacingheight20,
+                                  TextStyleUi(
+                                      textAlign: TextAlign.start,
+                                      fontWeight: FontWeight.bold,
+                                      size: 14,
+                                      text: 'Tu numero de DNI',
+                                      color: kfontPrimaryColor),
+                                  spacingheight10,
+                                  TextFormField(
+                                    
+                                    style: TextStyle(
+                                        color: kfontPrimaryColor,
+                                        fontSize: 12),
+                                    decoration: decorationinputtext(
+                                        'Ingresa tu DNI', 'Ingresa tu DNI'),
+                                    keyboardType: TextInputType.number,
+                                    maxLength: 8,
+                                    inputFormatters: [
+                                      //Expresion Regular
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp('[0-9]'))
+                                    ],
+                                    onSaved: (values) {
+                                      username = values!;
+                                    },
+                                    validator: (value) {
+                                      if (value != null && value.isEmpty) {
+                                        return 'Campo obligatorio';
+                                      }
+                                      if (value!.length < 8) {
+                                        return 'Ingrese 8 digitos';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  // spacingheight10,
+                                  TextStyleUi(
+                                      textAlign: TextAlign.start,
+                                      fontWeight: FontWeight.bold,
+                                      size: 13,
+                                      text: 'Tu contraseña',
+                                      color: kfontPrimaryColor),
+                                  spacingheight10,
+                                  TextFormField(
+                                    obscureText: isVisible,
+                                    style: TextStyle(
+                                        color: kfontPrimaryColor,
+                                        fontSize: 14),
+                                    decoration: InputDecoration(
+                                        hintText: 'Ingresa tu contraseña',
+                                        hintStyle: TextStyle(
+                                          fontSize: 13,
+                                          color: kfontPrimaryColor
+                                              .withOpacity(.5),
+                                        ),
+                                        enabledBorder: outlineInputBorder(),
+                                        focusedBorder: outlineInputBorder(),
+                                        errorBorder: outlineInputBorder(),
+                                        border: outlineInputBorder(),
+                                        disabledBorder: outlineInputBorder(),
+                                        focusedErrorBorder:
+                                            outlineInputBorder(),
+                                            
+                                        suffixIcon: IconButton(
+                                            onPressed: () {
+                                              isVisible = !isVisible;
+                                              setState(() {});
+                                            },
+                                            icon: Icon(
+                                              isVisible != true
+                                                  ? Icons.visibility
+                                                  : Icons.visibility_off,
+                                              size: 18,
                                               color: kfontPrimaryColor
                                                   .withOpacity(.5),
-                                            ),
-                                            enabledBorder: outlineInputBorder(),
-                                            focusedBorder: outlineInputBorder(),
-                                            errorBorder: outlineInputBorder(),
-                                            border: outlineInputBorder(),
-                                            disabledBorder:
-                                                outlineInputBorder(),
-                                            focusedErrorBorder:
-                                                outlineInputBorder(),
-                                            suffixIcon: IconButton(
-                                                onPressed: () {
-                                                  isVisible = !isVisible;
-                                                  setState(() {});
-                                                },
-                                                icon: Icon(
-                                                  isVisible != true
-                                                      ? Icons.visibility
-                                                      : Icons.visibility_off,
-                                                  size: 18,
-                                                  color: kfontPrimaryColor
-                                                      .withOpacity(.5),
-                                                ))),
-                                        keyboardType:
-                                            TextInputType.visiblePassword,
-                                        onSaved: (value) {
-                                          password = value!;
-                                        },
-                                        validator: (value) {
-                                          if (value != null && value.isEmpty) {
-                                            return 'Campo obligatorio';
-                                          }
-                                          if (value!.length < 6) {
-                                            return 'Ingrese mas de 6 caracteres';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              //Botton Login
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal:10.0),
-                                child: ButtonLogin(
-                                    onTap: () {
-                                      login();
-                                      setState(() {});
+                                            ))),
+                                    keyboardType:
+                                        TextInputType.visiblePassword,
+                                    onSaved: (value) {
+                                      password = value!;
                                     },
-                                    text: 'Iniciar sesión'),
+                                    validator: (value) {
+                                      if (value != null && value.isEmpty) {
+                                        return 'Campo obligatorio';
+                                      }
+                                      if (value!.length < 6) {
+                                        return 'Ingrese mas de 6 caracteres';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  ButtonLogin(
+                                      onTap: () {
+                                        login();
+                                        setState(() {});
+                                      },
+                                      text: 'Iniciar sesión'),
+                                ],
                               ),
-                              spacingheight50
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   ),

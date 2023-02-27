@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+Divider divider =  const Divider(  thickness: 1.0,  height: 1.0, );
+
 SizedBox spacingheight10 = const SizedBox(height: 10);
 SizedBox spacingwidth10 = const SizedBox(width: 10);
 

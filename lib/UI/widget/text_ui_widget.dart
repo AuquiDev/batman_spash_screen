@@ -8,17 +8,23 @@ class TextStyleUi extends StatelessWidget {
       required this.size,
       required this.text,
       required this.color,
-      this.textAlign})
+      this.textAlign,
+      this.textOverflow,
+      this.maxLines
+      })
       : super(key: key);
   double size;
   String text;
   FontWeight fontWeight;
   Color color;
   TextAlign? textAlign;
+  TextOverflow? textOverflow;
+  int? maxLines;
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: textOverflow,
       style: TextStyle(
           fontWeight: fontWeight,
           fontSize: size,
@@ -27,6 +33,7 @@ class TextStyleUi extends StatelessWidget {
             Shadow(color: Colors.black12, offset: Offset(0, 2), blurRadius: 2),
           ]),
       textAlign: textAlign,
+      maxLines: maxLines,
     );
   }
 }

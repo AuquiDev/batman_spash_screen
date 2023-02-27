@@ -1,4 +1,5 @@
-import 'package:batman_spash_screen/UI/pages/login_page.dart';
+
+import 'package:batman_spash_screen/UI/splash%20scren/intro_view_page.dart';
 import 'package:batman_spash_screen/UI/widget/widget.dart';
 // ignore: depend_on_referenced_packages
 import 'package:vector_math/vector_math_64.dart' as vector;
@@ -116,7 +117,7 @@ class _SplashScreenSignUpState extends State<SplashScreenSignUp>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:  [
-                      TextStyleUi(fontWeight: FontWeight.bold, size: 19, text: 'Andean Lodges', color: Colors.white),
+                      TextStyleUi(fontWeight: FontWeight.bold, size: 17, text: 'Andean Lodges', color: Colors.white),
                       TextStyleUi(fontWeight: FontWeight.bold, size: 12, text: 'Logística', color: Colors.white),
                     ],
                   ),
@@ -134,7 +135,7 @@ class _SplashScreenSignUpState extends State<SplashScreenSignUp>
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
+                                  builder: (context) => const IntroViewsPage()));
                           setState(() {});
                         },
                         text: 'Bienvenido',
@@ -172,7 +173,7 @@ class _ImageLLama extends StatelessWidget {
                   fit: BoxFit.contain,
                   color: animation2 == 0
                 ? Colors.black
-                :Colors.white,
+                :Colors.white24,
                   width: 90 - 3,
                   height: 90 - 3,
                 )
@@ -182,7 +183,7 @@ class _ImageLLama extends StatelessWidget {
             fit: BoxFit.contain,
             color: animation2 == 0
                 ? Colors.black
-                :Colors.white,
+                :Colors.white10,
             width: 90,
             height: 90,
           )
