@@ -8,14 +8,25 @@ import '../../general/general.dart';
 
 // ignore: must_be_immutable
 class ProductoWidgetModule extends StatelessWidget {
-   ProductoWidgetModule({super.key, required this.listProducto,});
+  ProductoWidgetModule({super.key, required this.listProducto});
   Producto listProducto;
-  
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTileCard(
+      initialElevation: 5,
+      // baseColor: kfont3erColor.withOpacity(.5),
+      initialPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 20),
+      trailing:  TextStyleUi(
+        textAlign: TextAlign.end,
+        color:Colors.black54,
+        fontWeight: FontWeight.bold,
+        size: 10,
+        text: '${listProducto.fechaV}\nStock : ${listProducto.existencia}',
+      ),
+      elevation: 10,
       title: TextStyleUi(
-        color: Colors.black54,
+        color: listProducto.existencia > 15 ? Colors.black54 : Colors.redAccent,
         fontWeight: FontWeight.bold,
         size: 15,
         text: listProducto.descripcin,
@@ -64,21 +75,23 @@ class ProductoWidgetModule extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _textexpandedData(listProducto.fabricante),
-                        _textexpandedData(
-                            listProducto.cantdXPaq.toString()),
+                        _textexpandedData(listProducto.cantdXPaq.toString()),
                         _textexpandedData(listProducto.unidadDeMedida),
-                        _textexpandedData(
-                            listProducto.existencia.toString()),
+                        TextStyleUi(
+                            textOverflow: TextOverflow.ellipsis,
+                            fontWeight: FontWeight.normal,
+                            size:listProducto.existencia < 20 ? 16 : 13,
+                            text: listProducto.existencia.toString(),
+                            color:listProducto.existencia > 15 ? Colors.black54 : Colors.redAccent,),
                         _textexpandedData(
                             'S/.${listProducto.precioUnidad.ceilToDouble()}'),
                         _textexpandedData(
                             'S/.${listProducto.precioPaquete.ceilToDouble()}'),
-                        _textexpandedData(listProducto.fechaV),
+                        _textexpandedData(listProducto.fechaV.toString()),
                         _textexpandedData(listProducto.status == true
                             ? 'ABASTECE'
                             : 'AGOTADO'),
-                        _textexpandedData(
-                            listProducto.comprar.toString()),
+                        _textexpandedData(listProducto.comprar.toString()),
                         _textexpandedData(
                             'S/.${listProducto.inversin.ceilToDouble()}'),
                         _textexpandedData(listProducto.proveedor),
@@ -105,7 +118,7 @@ class ProductoWidgetModule extends StatelessWidget {
               },
               child: Column(
                 children: const [
-                  Icon(Icons.edit),
+                  Icon(Icons.edit_square),
                   Text('Editar'),
                 ],
               ),
@@ -135,20 +148,16 @@ class ProductoWidgetModule extends StatelessWidget {
   }
 
   TextStyleUi _textexpandedData(String text) => TextStyleUi(
-    textOverflow: TextOverflow.ellipsis,
+      textOverflow: TextOverflow.ellipsis,
       fontWeight: FontWeight.normal,
       size: 13,
       text: text,
       color: Colors.black.withOpacity(.9));
 
   TextStyleUi _textoexpanded(String text) => TextStyleUi(
-    textOverflow: TextOverflow.ellipsis,
+      textOverflow: TextOverflow.ellipsis,
       fontWeight: FontWeight.bold,
       size: 13,
       text: text.toUpperCase(),
       color: Colors.black);
 }
-
-
-
-
