@@ -60,7 +60,8 @@ class _ProductoGestionPageState extends State<ProductoGestionPage> {
       comprar: 0,
       inversin: 0,
       proveedor: 'proveedor',
-      id: 0);
+      id:' 0'
+      );
 
   List<String> categoria = [
     'Aceites y Grasas',
@@ -177,19 +178,19 @@ class _ProductoGestionPageState extends State<ProductoGestionPage> {
           BackgroundPageWdiget(image: const AssetImage(AssetsData.huampo), isvisible: true),
           ///********************************* */
           
-          PageView.builder(
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            itemCount: listProducto.length,
-            itemBuilder: (context, index) {
-              final result = paginaActual - index;
-              final funcionLineal = -0.4 *result +1;
-              print(result);
-            return Transform(
-              transform: Matrix4.identity()
-              ..setEntry(3, 2, .001),
-              child: ProductoWidgetModule(listProducto: listProducto[index]));
-          }),
+          // PageView.builder(
+          //   controller: _pageController,
+          //   scrollDirection: Axis.vertical,
+          //   itemCount: listProducto.length,
+          //   itemBuilder: (context, index) {
+          //     final result = paginaActual - index;
+          //     final funcionLineal = -0.4 *result +1;
+          //     print(result);
+          //   return Transform(
+          //     transform: Matrix4.identity()
+          //     ..setEntry(3, 2, .001),
+          //     child: ProductoWidgetModule(listProducto: listProducto[index]));
+          // }),
 
 
           
@@ -197,27 +198,27 @@ class _ProductoGestionPageState extends State<ProductoGestionPage> {
 
           ///********************************* */
 
-          //Lista PRODUCTOS segun categoria
-          // isVisible == true
-          //     ? SingleChildScrollView(
-          //         child: Column(
-          //           children: [
-          //             ...listProducto.map(
-          //               (e) {
-          //                 // final productCopy = e;
-          //                 if (e.categoria == copyCategory) {
-          //                   return ProductoWidgetModule(
-          //                     listProducto: e,
-          //                   );
-          //                 } else {
-          //                   return const SizedBox.shrink();
-          //                 }
-          //               },
-          //             ),
-          //           ],
-          //         ),
-          //       )
-          //     : const SizedBox(),
+          // Lista PRODUCTOS segun categoria
+          isVisible == true
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ...listProducto.map(
+                        (e) {
+                          // final productCopy = e;
+                          if (e.categoria == copyCategory) {
+                            return ProductoWidgetModule(
+                              listProducto: e,
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              : const SizedBox(),
 
           //Lista FECHA VENCIMIENTO 
           isVisible == false

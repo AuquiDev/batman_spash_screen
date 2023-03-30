@@ -333,6 +333,7 @@ class SliverAppBAr extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+
     final size = MediaQuery.of(context).size;
     final percent = shrinkOffset / maxHeight;
     final currentImagesize =
@@ -423,31 +424,29 @@ class SliverAppBAr extends SliverPersistentHeaderDelegate {
               bottom: 20,
               left: (10 * (1 - percent)).clamp(33, 150),
               height: currentImagesize,
-              child: Stack(
-                children: [
-                  Transform.rotate(
-                      angle: vector.radians(360 * percent),
-                      child: TweenAnimationBuilder<double>(
-                        duration: const Duration(milliseconds: 500),
-                        tween: Tween(begin: 1, end: 0),
-                        curve: Curves.elasticOut,
-                        builder: (context, value, _) {
-                          return Transform.translate(
-                            offset: Offset(value * 100, 0),
-                            child: Container(
-                              height: currentImagesize,
-                              width: currentImagesize,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(usua[index].image))),
-                            ),
-                          );
-                        },
-                      )),
-                ],
-              )),
+              child: Transform.rotate(
+                  angle: vector.radians(360 * percent),
+                  child: TweenAnimationBuilder<double>(
+                    duration: const Duration(milliseconds: 500),
+                    tween: Tween(begin: 1, end: 0),
+                    curve: Curves.elasticOut,
+                    builder: (context, value, _) {
+                      
+                      return Transform.translate(
+                        offset: Offset(value * 100, 0),
+
+                        child: Container(
+                          height: currentImagesize,
+                          width: currentImagesize,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(usua[index].image))),
+                        ),
+                      );
+                    },
+                  ))),
         ],
       ),
     );

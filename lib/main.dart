@@ -1,6 +1,7 @@
 
-
 import 'package:batman_spash_screen/UI/splash%20scren/splash_screen.dart';
+
+
 import 'package:batman_spash_screen/service/service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,9 +31,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashScreenSignUp(),// const AnimationPrueba(),////const AnimationControllerTest(),
+      home: const SplashScreenSignUp(),//const PoketbaseGet (),
       theme: ThemeData.light().copyWith(textTheme: GoogleFonts.poppinsTextTheme())
       );
   }

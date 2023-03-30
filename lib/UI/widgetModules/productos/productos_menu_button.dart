@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:batman_spash_screen/UI/general/colors.dart';
 import 'package:batman_spash_screen/UI/general/general.dart';
 import 'package:batman_spash_screen/UI/widget/widget.dart';
 import 'package:batman_spash_screen/UI/widgetModules/widgetmodules.dart';
